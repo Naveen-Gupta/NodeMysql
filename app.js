@@ -105,6 +105,21 @@ app.get('/updateuserdata/:id', (req, res) => {
 	})
 })
 
+
+// delete user data
+app.get('/deleteuser/:id', (req, res) => {
+	let newLastname = "gupta"
+	let sql = `DELETE FROM users WHERE id =${req.params.id}`
+	db.query(sql, (err, result) => {
+			if(err)
+				throw err
+			else
+				console.log(result)
+			res.send("User deleted successfully...")
+	})
+})
+
+
 // starting server at port 3000
 app.listen(PORT, () =>{
 	console.log("Server started at port: ", PORT)
