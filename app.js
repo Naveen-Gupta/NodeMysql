@@ -92,6 +92,19 @@ app.get('/fetchuserdata/:id', (req, res) => {
 	})
 })
 
+// updating user data
+app.get('/updateuserdata/:id', (req, res) => {
+	let newLastname = "gupta"
+	let sql = `UPDATE users SET lastname = '${newLastname}' WHERE id =${req.params.id}`
+	db.query(sql, (err, result) => {
+			if(err)
+				throw err
+			else
+				console.log(result)
+			res.send("Data updated successfully...")
+	})
+})
+
 // starting server at port 3000
 app.listen(PORT, () =>{
 	console.log("Server started at port: ", PORT)
